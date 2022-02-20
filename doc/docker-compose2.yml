@@ -1,0 +1,73 @@
+version: '3.8'
+services:
+  redis-node-0:
+    image: redis:latest
+    container_name: redis-0
+    ports:
+      - "6380:6379"
+    command: ["redis-server","--appendonly yes","--cluster-enabled yes","--cluster-node-timeout 5000"]
+    volumes:
+      - redis-cluster_data-0:/redis/data
+
+  redis-node-1:
+    image: redis:latest
+    container_name: redis-1
+    ports:
+      - "6381:6379"
+    command: ["redis-server","--appendonly yes","--cluster-enabled yes","--cluster-node-timeout 5000"]
+    volumes:
+      - redis-cluster_data-1:/redis/data
+
+  redis-node-2:
+    image: redis:latest
+    container_name: redis-2
+    ports:
+      - "6382:6379"
+    command: ["redis-server","--appendonly yes","--cluster-enabled yes","--cluster-node-timeout 5000"]
+    volumes:
+      - redis-cluster_data-2:/redis/data
+
+  redis-node-3:
+    image: redis:latest
+    container_name: redis-3
+    ports:
+      - "6383:6379"
+    command: ["redis-server","--appendonly yes","--cluster-enabled yes","--cluster-node-timeout 5000"]
+    volumes:
+      - redis-cluster_data-3:/redis/data
+
+  redis-node-4:
+    image: redis:latest
+    container_name: redis-4
+    ports:
+      - "6384:6379"
+    command: ["redis-server","--appendonly yes","--cluster-enabled yes","--cluster-node-timeout 5000"]
+    volumes:
+      - redis-cluster_data-4:/redis/data
+
+  redis-node-5:
+    image: redis:latest
+    container_name: redis-5
+    ports:
+      - "6385:6379"
+    command: ["redis-server","--appendonly yes","--cluster-enabled yes","--cluster-node-timeout 5000"]
+    volumes:
+      - redis-cluster_data-5:/redis/data
+
+
+networks:
+  default:
+    name: overlay
+volumes:
+  redis-cluster_data-0:
+    driver: local
+  redis-cluster_data-1:
+    driver: local
+  redis-cluster_data-2:
+    driver: local
+  redis-cluster_data-3:
+    driver: local
+  redis-cluster_data-4:
+    driver: local
+  redis-cluster_data-5:
+    driver: local

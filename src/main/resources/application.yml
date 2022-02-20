@@ -1,0 +1,11 @@
+data:
+  queueSize: 10
+
+spring:
+  main:
+    banner-mode: off
+  redis:
+    password: bitnami
+    cluster:
+      nodes:
+      - localhost:6379

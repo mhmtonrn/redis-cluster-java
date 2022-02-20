@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <springProfile name="json-log">
+        <appender name="Console" class="ch.qos.logback.core.ConsoleAppender">
+            <encoder class="net.logstash.logback.encoder.LogstashEncoder">
+                <customFields>{"application":"gbs_redis_metrics"}</customFields>
+                <fieldNames class="net.logstash.logback.fieldnames.ShortenedFieldNames">
+                    <timestamp>time</timestamp>
+                    <version>version</version>
+                    <level>severity</level>
+                </fieldNames>
+
+                <includeCallerData>true</includeCallerData>
+            </encoder>
+        </appender>
+    </springProfile>
+    <springProfile name="!json-log">
+        <appender name="Console" class="ch.qos.logback.core.ConsoleAppender">
+            <layout class="ch.qos.logback.classic.PatternLayout">
+                <Pattern>
+                    %black(%d{ISO8601}) %highlight(%-5level) [%blue(%t)] %yellow(%C{1.}): %msg%n%throwable
+                </Pattern>
+            </layout>
+        </appender>
+    </springProfile>
+
+    <!-- LOG everything at INFO level -->
+    <root level="info">
+        <appender-ref ref="Console"/>
+    </root>
+</configuration>
